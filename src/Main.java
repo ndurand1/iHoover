@@ -29,6 +29,7 @@ public class Main {
         return false;
     }
 
+
     // printing game board
     public static void printGrille(int x, int y) {
         System.out.println("Grille: ");
@@ -102,22 +103,35 @@ public class Main {
         if(!checkInputPos(initDir)) {
             throw new IllegalArgumentException("Invalid input, please use a letter from N, S, E or W");
         }
-        int startPosition = startDirection(initDir);
-        hooverPos.dir = directions[startPosition];
+        int startDir = startDirection(initDir);
+        hooverPos.dir = directions[startDir];
 
 
         System.out.println("Enter a set of directions for the vacuum using format 'D', 'G', 'A' meaning 'turn right', 'turn left' and 'advance' (max 20 characters): ");
         String aspiInstructions = scanner.nextLine().toUpperCase();
         aspiControl = parseInstructions(aspiInstructions);
 
+        int currentDir = startDir;
+        //this goes out of bounds
         for(char elem: aspiControl) {
             switch(elem) {
                 case 'D':
-
+                    currentDir += 1;
+                    hooverPos.dir = directions[currentDir];
                 case 'G':
-                    //TODO
+                    currentDir -= 1;
+                    hooverPos.dir = directions[currentDir];
                 case 'A':
-                    //TODO
+                    switch(currentDir) {
+                        case 0:
+                            hooverPos.y += 1;
+                        case 1:
+                            hooverPos.x += 1;
+                        case 2:
+                            hooverPos.x -= 1;
+                        case 3:
+                            hooverPos.y -= 1;
+                    }
             }
         }
     //===========================================================================
