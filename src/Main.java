@@ -30,6 +30,7 @@ public class Main {
             System.out.println(); //move to the next line after printing a row
         }
     }
+
     //updating position + direction
     public static char[] parseInstructions(String userIn) {
         char[] userInArray =  userIn.toCharArray();
@@ -47,6 +48,8 @@ public class Main {
         }
         return 0;
     }
+
+    //checking instructions input
 
 //===================================================================================
 
@@ -97,7 +100,7 @@ public class Main {
         char[] aspiControl = parseInstructions(aspiInstructions);
 
         int currentDir = startDir;
-        // as soon as there is more than one instruction it ignores everything and prints out original hoover position
+
         for(char elem: aspiControl) {
             switch(elem) {
                 case 'D':
@@ -120,15 +123,27 @@ public class Main {
                     switch(currentDir) {
                         case 0: //N
                             hooverPos.y += 1;
+                            if(hooverPos.y > dimGrille[1]) {
+                                throw new IllegalArgumentException("Out of bounds Y");
+                            }
                             break;
                         case 1: //E
                             hooverPos.x += 1;
+                            if(hooverPos.x > dimGrille[1]) {
+                                throw new IllegalArgumentException("Out of bounds X");
+                            }
                             break;
                         case 2: //W
                             hooverPos.x -= 1;
+                            if(hooverPos.x > dimGrille[1]) {
+                                throw new IllegalArgumentException("Out of bounds X");
+                            }
                             break;
                         case 3: //S
                             hooverPos.y -= 1;
+                            if(hooverPos.y > dimGrille[1]) {
+                                throw new IllegalArgumentException("Out of bounds Y");
+                            }
                             break;
                     }
                     break;
