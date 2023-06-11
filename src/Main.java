@@ -48,7 +48,7 @@ public class Main {
     public static char[] parseInstructions(String userIn) {
         char[] userInArray =  userIn.toCharArray();
         char[] errorMessage = {'T', 'O', 'O', 'L','O','N','G'};
-        if(userInArray.length <= 20 ) {
+        if(userInArray.length <= 20 && userInArray.length > 0) {
             return userInArray;
         }
         return errorMessage;
@@ -69,7 +69,6 @@ public class Main {
 
         Position hooverPos = new Position(0,0, directions[0]);
         int[] dimGrille = {10,10}; //dimGrille[0] == x, dimGrill[1] == y
-        char[] aspiControl = new char[20];
 
 
     //================================================================================
@@ -109,29 +108,44 @@ public class Main {
 
         System.out.println("Enter a set of directions for the vacuum using format 'D', 'G', 'A' meaning 'turn right', 'turn left' and 'advance' (max 20 characters): ");
         String aspiInstructions = scanner.nextLine().toUpperCase();
-        aspiControl = parseInstructions(aspiInstructions);
+        char[] aspiControl = parseInstructions(aspiInstructions);
 
         int currentDir = startDir;
-        //this goes out of bounds
+        // as soon as there is more than one instruction it ignores everything and prints out original hoover position
         for(char elem: aspiControl) {
             switch(elem) {
                 case 'D':
-                    currentDir += 1;
+                    if(currentDir == 3) {
+                        currentDir = 0;
+                    } else {
+                        currentDir += 1;
+                    }
                     hooverPos.dir = directions[currentDir];
+                    break;
                 case 'G':
-                    currentDir -= 1;
+                    if(currentDir == 0) {
+                        currentDir = 3;
+                    } else {
+                        currentDir -= 1;
+                    }
                     hooverPos.dir = directions[currentDir];
+                    break;
                 case 'A':
                     switch(currentDir) {
-                        case 0:
+                        case 0: //N
                             hooverPos.y += 1;
-                        case 1:
+                            break;
+                        case 1: //E
                             hooverPos.x += 1;
-                        case 2:
+                            break;
+                        case 2: //W
                             hooverPos.x -= 1;
-                        case 3:
+                            break;
+                        case 3: //S
                             hooverPos.y -= 1;
+                            break;
                     }
+                    break;
             }
         }
     //===========================================================================
