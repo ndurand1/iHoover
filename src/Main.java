@@ -1,13 +1,4 @@
 import java.util.Scanner;
-/*
-    TODO:
-    [x] account for illegal inputs for dimGrille
-    [x] account for illegal and out of bounds inputs for initPos
-    [x] account for illegal inputs for direction set
-    [x] return a copy of dimGrille using .
-    [] return a copy of dimGrille with vacuum position displayed as x
-    [x] Parse aspiInstructions function
- */
 
 public class Main {
     public static char[] directions = {'N','E','W','S'};
@@ -39,10 +30,6 @@ public class Main {
             System.out.println(); //move to the next line after printing a row
         }
     }
-    public static void printHoover() {
-        //TODO
-    }
-
     //updating position + direction
     public static char[] parseInstructions(String userIn) {
         char[] userInArray =  userIn.toCharArray();
