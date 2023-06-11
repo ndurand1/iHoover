@@ -6,8 +6,7 @@ import java.util.Scanner;
     [x] account for illegal inputs for direction set
     [x] return a copy of dimGrille using .
     [] return a copy of dimGrille with vacuum position displayed as x
-    [] Parse aspiInstructions function
-    [] Clear trailing empty strings from aspiControl
+    [x] Parse aspiInstructions function
  */
 
 public class Main {
