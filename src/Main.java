@@ -32,13 +32,13 @@ public class Main {
     }
 
     //updating position + direction
-    public static char[] parseInstructions(String userIn) {
+    public static char[] checkInstructions(String userIn) {
         char[] userInArray =  userIn.toCharArray();
-        char[] errorMessage = {'T', 'O', 'O', 'L','O','N','G'};
+        char[] error = {'N'};
         if(userInArray.length <= 20 && userInArray.length > 0) {
             return userInArray;
         }
-        return errorMessage;
+        return error;
     }
     public static int startDirection(char positionCheck) {
         for(int i = 1; i < directions.length; i++) {
@@ -97,7 +97,7 @@ public class Main {
 
         System.out.println("Enter a set of directions for the vacuum using format 'D', 'G', 'A' meaning 'turn right', 'turn left' and 'advance' (max 20 characters): ");
         String aspiInstructions = scanner.nextLine().toUpperCase();
-        char[] aspiControl = parseInstructions(aspiInstructions);
+        char[] aspiControl = checkInstructions(aspiInstructions);
 
         int currentDir = startDir;
 
@@ -147,6 +147,8 @@ public class Main {
                             break;
                     }
                     break;
+                case 'N':
+                    throw new IllegalArgumentException("Instructions too long");
             }
         }
     //===========================================================================
