@@ -35,7 +35,7 @@ public class Main {
         System.out.println("Grille with Hoover pos: ");
         for(int i = 0; i < y; i++) {
             for(int j = 0; j < x; j++) {
-                if(i == hooverX && j == hooverY) {
+                if(i == hooverY && j == hooverX) {
                     System.out.print("x ");
                 } else {
                     System.out.print(". ");
@@ -162,12 +162,13 @@ public class Main {
                             break;
                     }
                     break;
-                case 'N':
+                case 'N': //error in checkInstructions function
                     throw new IllegalArgumentException("Instructions too long");
             }
         }
     //===========================================================================
 
+        printGrilleH(dimGrille[0], dimGrille[1], hooverPos.x, hooverPos.y);
         hooverPos.echoPosition();
 
     }
