@@ -31,6 +31,20 @@ public class Main {
         }
     }
 
+    public static void printGrilleH(int x, int y, int hooverX, int hooverY) {
+        System.out.println("Grille with Hoover pos: ");
+        for(int i = 0; i < y; i++) {
+            for(int j = 0; j < x; j++) {
+                if(i == hooverX && j == hooverY) {
+                    System.out.print("x ");
+                } else {
+                    System.out.print(". ");
+                }
+            }
+            System.out.println(); //move to the next line after printing a row
+        }
+    }
+
     //updating position + direction
     public static char[] checkInstructions(String userIn) {
         char[] userInArray =  userIn.toCharArray();
@@ -84,6 +98,7 @@ public class Main {
             hooverPos.x =  initPosX;
             hooverPos.y = initPosY;
         }
+        printGrilleH(dimGrille[0], dimGrille[1], initPosX, initPosY);
         scanner.nextLine(); // could Integer.parseInt() for all previous nextInt calls, but this is arguably cleaner10
 
         System.out.println("Enter an initial direction for the vacuum using a letter from N, S, E or W: ");
